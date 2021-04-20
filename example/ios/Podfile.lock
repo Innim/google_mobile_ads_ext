@@ -8,6 +8,7 @@ PODS:
     - Google-Mobile-Ads-SDK (= 7.69.0)
   - google_mobile_ads_ext (0.1.0):
     - Flutter
+    - Google-Mobile-Ads-SDK
   - GoogleAppMeasurement (7.10.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 7.0)
     - GoogleUtilities/MethodSwizzler (~> 7.0)
@@ -65,7 +66,7 @@ SPEC CHECKSUMS:
   Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
   Google-Mobile-Ads-SDK: 2f288748a42920d1c744946a460896a95b0e9110
   google_mobile_ads: 126e0785d3b0bd36d52ff331c19b8d8162407843
-  google_mobile_ads_ext: 186ccca5ef95e5da0e975e7fff5f55e83df7a178
+  google_mobile_ads_ext: dc44b965c46bcb4f57e12317d76a561e5ae53363
   GoogleAppMeasurement: 1c863b1161fc3c8cf614a7460d1be6a7c262aab3
   GoogleUserMessagingPlatform: b168e8c46cd8f92aa3e34b584c4ca78a411ce367
   GoogleUtilities: e1d9ed4e544fc32a93e00e721400cbc3f377200d
