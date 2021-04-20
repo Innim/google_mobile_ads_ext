@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:google_mobile_ads_ext/google_mobile_ads_ext.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  MobileAds.instance.initialize();
   runApp(const MyApp());
 }
 
@@ -12,6 +16,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  bool _muted = false;
+  bool _pending = false;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,12 +26,106 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: Center(
-          child: Column(
-            children: const [],
-          ),
+        body: Builder(
+          builder: (context) {
+            Widget res = Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RaisedButton(
+                    child: Text(_muted ? 'Unmute' : 'Mute'),
+                    onPressed: () async {
+                      final val = !_muted;
+
+                      await GoogleMobileAdsExt.setAppMuted(val);
+
+                      setState(() {
+                        _muted = val;
+                      });
+                    },
+                  ),
+                  RaisedButton(
+                    child: const Text('Set volume 0.5'),
+                    onPressed: () async {
+                      const volume = 0.5;
+                      await GoogleMobileAdsExt.setAppVolume(volume);
+
+                      _showMessage(context, 'Volume was set.');
+
+                      setState(() {
+                        _muted = false;
+                      });
+                    },
+                  ),
+                  RaisedButton(
+                    child: const Text('Show Ad'),
+                    color: Colors.yellow,
+                    onPressed: _showAds,
+                  ),
+                ],
+              ),
+            );
+
+            if (_pending) {
+              res = Stack(
+                children: [
+                  res,
+                  _buildPending(context),
+                ],
+              );
+            }
+
+            return res;
+          },
         ),
       ),
     );
+  }
+
+  Widget _buildPending(BuildContext context) {
+    return Stack(
+      children: const [
+        Opacity(
+          opacity: 0.3,
+          child: ModalBarrier(dismissible: false, color: Colors.grey),
+        ),
+        Center(
+          child: CircularProgressIndicator(),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _showAds() async {
+    _setPending(true);
+
+    // Interstitial Video:
+    const adId = 'ca-app-pub-3940256099942544/8691691433';
+    final interstitialAd = InterstitialAd(
+      adUnitId: adId,
+      request: const AdRequest(),
+      listener: AdListener(
+        onAdLoaded: (ad) {
+          (ad as InterstitialAd).show();
+        },
+        onAdClosed: (ad) => _setPending(false),
+        onAdFailedToLoad: (ad, error) => _setPending(false),
+      ),
+    );
+
+    await interstitialAd.load();
+  }
+
+  void _showMessage(BuildContext context, String message) {
+    Scaffold.of(context).showSnackBar(SnackBar(
+      content: Text(message),
+      duration: const Duration(seconds: 1),
+    ));
+  }
+
+  void _setPending(bool value) {
+    setState(() {
+      _pending = value;
+    });
   }
 }
