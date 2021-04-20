@@ -1,0 +1,29 @@
+name: google_mobile_ads_ext
+description: Implements some missing AdMob features from google_mobile_ads.
+version: 0.1.0
+homepage: https://github.com/Innim/google_mobile_ads_ext
+repository: https://github.com/Innim/google_mobile_ads_ext
+issue_tracker: https://github.com/Innim/google_mobile_ads_ext/issues
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+  flutter: ">=1.20.0 <2.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_mobile_ads: ^0.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  innim_lint: ^0.1.7
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: ru.innim.google_mobile_ads_ext
+        pluginClass: GoogleMobileAdsExtPlugin
+      ios:
+        pluginClass: GoogleMobileAdsExtPlugin
