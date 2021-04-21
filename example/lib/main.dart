@@ -16,11 +16,13 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  double _value = 1;
   bool _muted = false;
   bool _pending = false;
 
   @override
   Widget build(BuildContext context) {
+    final nextVal = _value == 1 ? .5 : 1.0;
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -45,15 +47,14 @@ class _MyAppState extends State<MyApp> {
                     },
                   ),
                   RaisedButton(
-                    child: const Text('Set volume 0.5'),
+                    child: Text('Set volume $nextVal'),
                     onPressed: () async {
-                      const volume = 0.5;
-                      await GoogleMobileAdsExt.setAppVolume(volume);
+                      await GoogleMobileAdsExt.setAppVolume(nextVal);
 
-                      _showMessage(context, 'Volume was set.');
+                      _showMessage(context, 'Volume was set to $nextVal.');
 
                       setState(() {
-                        _muted = false;
+                        _value = nextVal;
                       });
                     },
                   ),
