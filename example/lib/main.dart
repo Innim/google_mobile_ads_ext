@@ -40,6 +40,8 @@ class _MyAppState extends State<MyApp> {
                       final val = !_muted;
 
                       await GoogleMobileAdsExt.setAppMuted(val);
+                      // alternative:
+                      // await MobileAds.instance.setAppMuted(val);
 
                       setState(() {
                         _muted = val;
@@ -50,6 +52,8 @@ class _MyAppState extends State<MyApp> {
                     child: Text('Set volume $nextVal'),
                     onPressed: () async {
                       await GoogleMobileAdsExt.setAppVolume(nextVal);
+                      // alternative:
+                      // await MobileAds.instance.setAppVolume(val);
 
                       _showMessage(context, 'Volume was set to $nextVal.');
 
