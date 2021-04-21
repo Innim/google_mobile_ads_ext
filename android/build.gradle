@@ -36,6 +36,9 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+    dependencies {
+        compileOnly rootProject.findProject(":google_mobile_ads")
+    }
 }
 
 dependencies {

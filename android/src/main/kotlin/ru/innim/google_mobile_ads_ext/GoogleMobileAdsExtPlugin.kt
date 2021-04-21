@@ -1,6 +1,7 @@
 package ru.innim.google_mobile_ads_ext
 
 import androidx.annotation.NonNull
+import com.google.android.gms.ads.MobileAds
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
@@ -19,8 +20,18 @@ class GoogleMobileAdsExtPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    // TODO: implement
-    result.notImplemented()
+    when (call.method) {
+      "setAppMuted" -> {
+        MobileAds.setAppMuted(call.arguments as Boolean)
+        result.success(null)
+      }
+      "setAppVolume" -> {
+        val value = call.arguments as Double
+        MobileAds.setAppVolume(value.toFloat())
+        result.success(null)
+      }
+      else -> result.notImplemented()
+    }
   }
 
   override fun onDetachedFromEngine(@NonNull binding: FlutterPlugin.FlutterPluginBinding) {
