@@ -1,5 +1,8 @@
 # google_mobile_ads_ext
 
+[![pub package](https://img.shields.io/pub/v/google_mobile_ads_ext)](https://pub.dartlang.org/packages/google_mobile_ads_ext)
+
+
 If you use [google_mobile_ads](https://pub.dev/packages/google_mobile_ads) 
 you can notice that it's still missing some AdMob features.
 
