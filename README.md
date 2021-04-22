@@ -1,6 +1,6 @@
 # google_mobile_ads_ext
 
-[![pub package](https://img.shields.io/pub/v/google_mobile_ads_ext)](https://pub.dartlang.org/packages/google_mobile_ads_ext)
+[![pub package](https://img.shields.io/pub/v/google_mobile_ads_ext)](https://pub.dartlang.org/packages/google_mobile_ads_ext) [![innim lint](https://img.shields.io/badge/style-innim_lint-40c4ff.svg)](https://pub.dev/packages/innim_lint)
 
 
 If you use [google_mobile_ads](https://pub.dev/packages/google_mobile_ads) 
