@@ -1,3 +1,5 @@
+- Null-safety support.
+
 ## 0.1.0
 
 - Initial release.

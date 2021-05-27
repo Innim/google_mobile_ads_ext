@@ -9,7 +9,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  RaisedButton(
+                  ElevatedButton(
                     child: Text(_muted ? 'Unmute' : 'Mute'),
                     onPressed: () async {
                       final val = !_muted;
@@ -48,7 +48,7 @@ class _MyAppState extends State<MyApp> {
                       });
                     },
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     child: Text('Set volume $nextVal'),
                     onPressed: () async {
                       await GoogleMobileAdsExt.setAppVolume(nextVal);
@@ -62,9 +62,12 @@ class _MyAppState extends State<MyApp> {
                       });
                     },
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     child: const Text('Show Ad'),
-                    color: Colors.yellow,
+                    style: TextButton.styleFrom(
+                      backgroundColor: Colors.yellowAccent,
+                      primary: Colors.black54,
+                    ),
                     onPressed: _showAds,
                   ),
                 ],
@@ -122,7 +125,7 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _showMessage(BuildContext context, String message) {
-    Scaffold.of(context).showSnackBar(SnackBar(
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       content: Text(message),
       duration: const Duration(seconds: 1),
     ));

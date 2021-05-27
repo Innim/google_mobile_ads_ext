@@ -14,7 +14,6 @@ class GoogleMobileAdsExt {
   ///
   /// Defaults to `1.0`.
   static Future<void> setAppVolume(double value) async {
-    assert(value != null);
     assert(value >= 0 && value <= 1);
 
     await _channel.invokeMethod<void>(_methodSetAppVolume, value);
@@ -28,8 +27,6 @@ class GoogleMobileAdsExt {
   /// Defaults to `false`.
   // ignore: avoid_positional_boolean_parameters
   static Future<void> setAppMuted(bool value) async {
-    assert(value != null);
-
     await _channel.invokeMethod<void>(_methodSetAppMuted, value);
   }
 }
