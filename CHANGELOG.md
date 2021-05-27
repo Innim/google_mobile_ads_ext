@@ -1,4 +1,7 @@
+## 0.2.0
+
 - Null-safety support.
+- Upgrade `google_mobile_ads` dependency up to 0.13.
 
 ## 0.1.0
 

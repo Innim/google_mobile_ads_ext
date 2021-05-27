@@ -109,19 +109,20 @@ class _MyAppState extends State<MyApp> {
 
     // Interstitial Video:
     const adId = 'ca-app-pub-3940256099942544/8691691433';
-    final interstitialAd = InterstitialAd(
+
+    await InterstitialAd.load(
       adUnitId: adId,
       request: const AdRequest(),
-      listener: AdListener(
+      adLoadCallback: InterstitialAdLoadCallback(
         onAdLoaded: (ad) {
-          (ad as InterstitialAd).show();
+          ad.fullScreenContentCallback = FullScreenContentCallback(
+            onAdDismissedFullScreenContent: (ad) => _setPending(false),
+          );
+          ad.show();
         },
-        onAdClosed: (ad) => _setPending(false),
-        onAdFailedToLoad: (ad, error) => _setPending(false),
+        onAdFailedToLoad: (error) => _setPending(false),
       ),
     );
-
-    await interstitialAd.load();
   }
 
   void _showMessage(BuildContext context, String message) {
