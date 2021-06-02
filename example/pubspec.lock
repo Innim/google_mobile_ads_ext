@@ -70,9 +70,11 @@ packages:
   google_mobile_ads:
     dependency: transitive
     description:
-      name: google_mobile_ads
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "packages/google_mobile_ads"
+      ref: HEAD
+      resolved-ref: "6509b96dc42f7a9c4c19312e134f730dc60fcfef"
+      url: "https://github.com/Innim/googleads-mobile-flutter"
+    source: git
     version: "0.13.0"
   google_mobile_ads_ext:
     dependency: "direct main"

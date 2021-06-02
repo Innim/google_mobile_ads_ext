@@ -12,7 +12,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  google_mobile_ads: ^0.13.0
+  google_mobile_ads:
+    git:
+      url: https://github.com/Innim/googleads-mobile-flutter
+      path: packages/google_mobile_ads
 
 dev_dependencies:
   flutter_test:
